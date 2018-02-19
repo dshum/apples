@@ -1,0 +1,197 @@
+nav {
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 81rem;
+    height: 5rem;
+    line-height: 5rem;
+    margin: auto;
+    padding: 0;
+    color: white;
+}
+
+nav a {
+    color: inherit;
+}
+  
+nav .logo {
+    float: left;
+    margin-right: 2rem;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    background-color: yellowgreen;
+    color: black;
+}
+  
+nav .logo a {
+    color: inherit;
+    text-decoration: none;
+}
+
+nav ul.menu {
+    float: left;
+    margin-left: 5rem;
+    clear: all;
+    font-size: 1rem;
+}
+
+nav ul.menu li {
+    float: left;
+    margin: 0 1rem;
+    height: 5rem;
+    line-height: 5rem;
+    padding: 0;
+}
+
+nav ul.menu li a {
+    text-decoration: none;
+    border-bottom: 1px solid rgb(235, 245, 220);
+}
+
+nav ul.menu li a:hover {
+    border-bottom-color: transparent;
+}
+
+nav ul.user {
+    float: right;
+    margin-left: 2rem;
+    font-size: 1rem;
+}
+
+nav ul.user li {
+    float: left;
+    margin: 0 1rem;
+    height: 5rem;
+    line-height: 5rem;
+    padding: 0;
+}
+
+nav ul.user li a {
+    text-decoration: none;
+    border-bottom: 1px solid rgb(235, 245, 220);
+}
+
+nav ul.user li a:hover {
+    border-bottom-color: transparent;
+}
+
+nav ul.user li.cart-amount {
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    padding: 0 1rem;
+    background-color: lightcoral;
+    color: black;
+    font-size: 1.2rem;
+}
+
+nav ul.user li.cart-amount a {
+    text-decoration: none;
+    border-bottom: 1px solid black;
+}
+
+nav ul.user li.cart-amount a:hover {
+    border-bottom-color: transparent;
+}
+
+.cover {
+    background-image: url(/img/post1.jpg);
+    background-position: top;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    padding: 0;
+    transition: 0.5s;
+}
+
+.content {
+    padding-top: 9rem;
+    padding-bottom: 2rem;
+    left: 0;
+    right: 0;
+    width: 81rem;
+    margin: auto;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: white;
+}
+
+.content a {
+    color: white;
+}
+
+.content .h1 {
+    font-size: 4rem;
+    color: bisque;
+}
+
+.content .p {
+    display: inline-block;
+    margin: 0.5rem 0;
+    padding: 0 0.5rem;
+    background-color: rgba(5, 15, 10, 0.5);
+    font-size: 2rem;
+    color: white;
+}
+
+.goods {
+    left: 0;
+    right: 0;
+    width: 81rem;
+    margin: auto;
+    padding: 2rem 0;
+}
+
+.goods .good {
+    float: left;
+    position: relative;
+    margin: 2rem;
+    width: 23rem;
+    height: 18rem;
+    box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.18), 0 2px 11px 0 rgba(0, 0, 0, 0.15);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.goods .good img {
+    position: absolute;
+    top: -3rem;
+    width: 23rem;
+}
+
+.goods .good .title {
+    position: absolute;
+    top: 0;
+    display: inline-block;
+    margin-bottom: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    background-color: rgba(0, 0, 128, 0.8);
+    padding: 0.25rem 1rem;
+    color: white;
+    font-size: 1.5rem;
+}
+
+.goods .good .title a {
+    color: white;
+}
+
+.goods .good .cart {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+    border-top-left-radius: 0.5rem;
+    background-color: rgba(35, 120, 35, 0.8);
+    padding: 0.25rem 1rem;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.goods .good .cart .fa {
+    margin-right: 1rem;
+    width: 1.5rem;
+}
