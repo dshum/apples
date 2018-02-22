@@ -5,6 +5,7 @@
 @stop
 
 @section('content')
+<h1>Вход</h1>
 @if (isset($errors) && $errors->any())
     <div class="errors">
     @foreach ($errors->all() as $error)

@@ -34,6 +34,8 @@ Route::post('/profile', 'HomeController@save');
 
 Route::get('/delivery', 'PageController@index')->name('delivery');
 Route::get('/contacts', 'PageController@index')->name('contacts');
+Route::get('/feedback', 'PageController@index')->name('feedback');
+
 Route::get('/good_{id}', 'GoodController@index')->name('good');
 
 Route::get('/', 'WelcomeController@index')->name('welcome');

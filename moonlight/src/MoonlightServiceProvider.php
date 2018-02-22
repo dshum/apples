@@ -2,9 +2,9 @@
 
 namespace Moonlight;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\DB;
 use Moonlight\Main\Site;
 
@@ -20,7 +20,7 @@ class MoonlightServiceProvider extends ServiceProvider
         $site = \App::make('site');
 
         $site->initMicroTime();
-        
+
         if (file_exists($path = __DIR__.'/helpers.php')) {
 			include $path;
 		}
@@ -67,6 +67,6 @@ class MoonlightServiceProvider extends ServiceProvider
     {
         \App::singleton('site', function($app) {
 			return new Site;
-        });
+		}); 
     }
 }

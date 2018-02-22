@@ -1,11 +1,11 @@
-@extends('layout')
+@extends('layouts.base')
 
 @section('title')
 Профиль
 @stop
 
 @section('content')
-<h1>{{ $user->email }}</h1>
+<h1>Профиль</h1>
 @if (isset($errors) && $errors->any())
     <div class="errors">
     @foreach ($errors->all() as $error)
@@ -15,6 +15,10 @@
 @endif
 <form action="{{ route('profile') }}" method="post" autocomplete="false">
     {{ csrf_field() }}
+    <div class="row">
+        <label>E-mail:</label><br>
+        <input type="text" name="email" value="{{ $user->email }}" readonly>
+    </div>
     <div class="row">
         <label>Имя:</label><br>
         <input type="text" name="first_name" value="{{ $first_name }}">

@@ -1,10 +1,11 @@
-@extends('layout')
+@extends('layouts.base')
 
 @section('title')
 Регистрация
 @stop
 
 @section('content')
+<h1>Регистрация</h1>
 @if (isset($errors) && $errors->any())
     <div class="errors">
     @foreach ($errors->all() as $error)

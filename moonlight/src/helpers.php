@@ -10,6 +10,15 @@ if (! function_exists('class_id')) {
     }
 }
 
+if (! function_exists('item_id')) {
+    function item_id(Model $element)
+    {
+        $item = Element::getItem($element);
+        
+        return $item->getNameId();
+    }
+}
+
 if (! function_exists('property')) {
     function property(Model $element, $propertyName)
     {

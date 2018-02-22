@@ -697,23 +697,23 @@ $site->
 
 	addRubric(
 		Rubric::create('goods', 'Товары')->
-		addList('App.Good')
+		bind('App.Good')
 	)->
 	addRubric(
 		Rubric::create('sections', 'Разделы сайта')->
-		addList([Site::ROOT => 'App.Section'])
+		bind([Site::ROOT => 'App.Section'])
 	)->
 	addRubric(
 		Rubric::create('service_sections', 'Служебные разделы')->
-		addList([Site::ROOT => 'App.ServiceSection'])
+		bind([Site::ROOT => 'App.ServiceSection'])
 	)->
 	addRubric(
 		Rubric::create('dictionaries', 'Справочники')->
-		addList([sprintf('App.ServiceSection.%d', env('SITE_DICTS', 3)) => 'App.ServiceSection'])
+		bind([sprintf('App.ServiceSection.%d', env('SITE_DICTS', 3)) => 'App.ServiceSection'])
 	)->
 	addRubric(
 		Rubric::create('site_settings', 'Настройки сайта')->
-		addList('App.SiteSettings')
+		bind('App.SiteSettings')
 	)->
 
 	end();
