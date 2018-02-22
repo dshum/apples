@@ -343,13 +343,8 @@ nav .dropdown ul > li span {
   padding: 2rem;
 }
 
-.sidebar ul {
-  display: table;
-}
-
 .sidebar ul li a {
-  text-decoration: underline;
-  color: inherit;
+  color: black;
 }
 
 .sidebar ul li.active > a {
