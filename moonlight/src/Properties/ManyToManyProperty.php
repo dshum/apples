@@ -112,6 +112,15 @@ class ManyToManyProperty extends BaseProperty
 
 		return $this;
 	}
+
+	public function setRelation(Model $relation)
+	{
+		if ($this->getRelatedClass() == Element::getClass($relation)) {
+			$this->setList([$relation]);
+		}
+
+		return $this;
+	}
     
     public function set()
 	{
@@ -121,6 +130,19 @@ class ManyToManyProperty extends BaseProperty
 		try {
 			if (method_exists($this->element, $name)) {
 				$this->element->{$name}()->sync($ids);
+			}
+		} catch (\Exception $e) {}
+
+		return $this;
+	}
+
+	public function drop()
+	{
+		$name = $this->getName();
+
+		try {
+			if (method_exists($this->element, $name)) {
+				$this->element->{$name}()->detach();
 			}
 		} catch (\Exception $e) {}
 

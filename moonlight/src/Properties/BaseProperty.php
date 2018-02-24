@@ -201,6 +201,11 @@ abstract class BaseProperty
 	{
 		return $this->element;
 	}
+
+	public function setRelation(Model $relation)
+	{
+		return $this;
+	}
     
     public function setRequest(Request $request)
 	{
@@ -212,6 +217,13 @@ abstract class BaseProperty
 	public function getRequest()
 	{
 		return $this->request;
+	}
+
+	public function setValue($value)
+	{
+		$this->value = $value;
+
+		return $this;
 	}
 
 	public function getValue()
