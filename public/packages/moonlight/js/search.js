@@ -814,4 +814,53 @@ $(function() {
 
         submit(page);
     });
+
+    $('body').on('click', 'li.column-toggler', function() {
+        var li = $(this);
+        var dropdown = li.find('.dropdown');
+        var display = li.attr('display');
+
+        if (display == 'show') {
+            li.attr('display', 'hide');
+            dropdown.fadeOut(200);
+        } else {
+            li.attr('display', 'show');
+            dropdown.fadeIn(200);
+        }
+    });
+
+    $('body').on('click', 'li.column-toggler .dropdown', function(e) {
+        e.stopPropagation();
+    });
+
+    $('body').on('click', 'li.column-toggler .dropdown ul > li[show]', function(e) {
+        var li = $(this);
+        var name = li.attr('name');
+        var show = li.attr('show');
+        var itemContainer = li.parents('div[item]');
+        var item = itemContainer.attr('item');
+
+        show = show == 'true' ? 'false' : 'true';
+
+        li.attr('show', show);
+
+        $.post('/moonlight/column', {
+            item: item,
+            name: name,
+            show: show
+        });
+    });
+
+    $('body').on('click', 'li.column-toggler .dropdown .btn', function(e) {
+        var itemContainer = $(this).parents('div[item]');
+        var li = $(this).parents('li.column-toggler');
+        var dropdown = li.find('.dropdown');
+        var item = itemContainer.attr('item');
+
+        li.attr('display', 'hide');
+        
+        dropdown.fadeOut(200, function() {
+            getElements(item);
+        });
+    });
 });

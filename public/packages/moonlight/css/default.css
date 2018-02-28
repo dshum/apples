@@ -154,7 +154,7 @@ button:focus {
 .btn.small {
   height: 2rem;
   line-height: 2rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
   padding: 0 1rem;
 }
 
@@ -414,6 +414,59 @@ nav .dropdown ul > li span {
   border: 1px solid #ddd;
 }
 
+.sidebar .contextmenu {
+  display: none;
+  position: absolute;
+  z-index: 120;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.18), 0 2px 11px 0 rgba(0, 0, 0, 0.15);
+  border: none;
+  background-color: white;
+  font-size: 1rem;
+}
+
+.sidebar .contextmenu ul {
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar .contextmenu ul > li {
+  float: none;
+  height: 3rem;
+  line-height: 3rem;
+  margin: 0;
+  padding: 0;
+  white-space: nowrap;
+  color: black;
+}
+
+.sidebar .contextmenu ul > li:hover {
+  background-color: #eee;
+  transition: 0.2s;
+}
+
+.sidebar .contextmenu ul > li.title {
+  height: auto;
+  line-height: 1.5rem;
+  padding: 1rem 3rem 0.5rem 2rem;
+  background-color: white;
+  color: #357;
+}
+
+.sidebar .contextmenu ul > li.divider {
+  height: 1px;
+  background-color: #ccc;
+  padding: 0;
+}
+
+.sidebar .contextmenu ul > li a {
+  display: block;
+  padding: 0 3rem 0 2rem;
+  text-decoration: none;
+  color: black;
+}
+
 .sidebar input[type="text"] {
   margin: 0 0 2rem 0;
   width: 10rem;
@@ -521,19 +574,15 @@ div.path div.divider {
   color: silver;
 }
 
-div.path div.part a.external-link {
+div.path div.part a.edit {
   margin-left: 1.5rem;
   text-decoration: none;
   border-bottom: none;
 }
 
-div.path div.part a.external-link .fa {
-  color: firebrick;
+div.path div.part a.edit .fa {
+  color: darkgoldenrod;
   font-size: 1.3rem;
-}
-
-div.path div.add-element a {
-  margin-left: 0.25rem;
 }
 
 /* Table header */
@@ -564,11 +613,9 @@ ul.header li:last-child {
   float: none;
 }
 
-ul.header li.h2 {
-  line-height: 1.8rem;
-}
-
 ul.header li.h2 span {
+  position: relative;
+  top: -2px;
   font-size: 1.4rem;
   color: #ccc;
 }
@@ -598,9 +645,106 @@ ul.header li.checked > span {
   color: white;
 }
 
-.sort-toggler {
+ul.header li span.sort-toggler {
   border-bottom: 1px dashed #999;
   cursor: pointer;
+}
+
+ul.header li.search-link {
+  margin-left: 1rem;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+ul.header li.search-link a {
+  color: #666;
+  text-decoration: none;
+  border-bottom: 1px solid black;
+}
+
+ul.header li.column-toggler {
+  margin-left: 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+ul.header li.column-toggler > span {
+  border-bottom: 1px dashed black;
+}
+
+ul.header li.column-toggler .fa {
+  position: relative;
+  top: 2px;
+  margin-left: 0.5rem;
+  transition: all 0.2s linear 0s;
+}
+
+ul.header li.column-toggler[display="show"] .fa {
+  transform: rotate(180deg);
+}
+
+ul.header .dropdown {
+  display: none;
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+ul.header .dropdown .container {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  padding: 0;
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.18), 0 2px 11px 0 rgba(0, 0, 0, 0.15);
+  border: none;
+  border-collapse: separate;
+  border-spacing: 1px;
+  background-color: white;
+  font-size: 1rem;
+}
+
+ul.header .dropdown ul {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+ul.header .dropdown ul > li {
+  display: block;
+  margin: 0;
+  height: auto;
+  padding: 0.25rem 2rem 0.25rem 1rem;
+  white-space: nowrap;
+  color: black;
+}
+
+ul.header .dropdown ul > li[show]:hover {
+  background-color: #eee;
+  transition: 0.2s;
+}
+
+ul.header .dropdown ul > li span.eye {
+  display: inline-block;
+  margin-top: -4px;
+  margin-right: 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  vertical-align: middle;
+  background-color: #395;
+  border-radius: 2px;
+  transition: 0.2s;
+}
+
+ul.header .dropdown ul > li[show="false"] span.eye {
+  background-color: silver;
+}
+
+ul.header .dropdown ul > li.reload {
+  margin: 0;
+  border-top: 1px solid #ccc;
+  padding: 1rem 2rem 1rem 1rem;
 }
 
 div.empty {
@@ -668,16 +812,6 @@ div.empty > div:last-child {
 
 .buttons .button.enabled > div > .fa {
   color: black;
-  transition: 0.3s;
-}
-
-.buttons .button.enabled.up > .fa {
-  color: steelblue;
-  transition: 0.3s;
-}
-
-.buttons .button.enabled.edit > .fa {
-  color: goldenrod;
   transition: 0.3s;
 }
 
@@ -816,7 +950,7 @@ table.elements td.browse {
 
 table.elements td.browse .fa {
   position: relative;
-  top: -2px;
+  top: -4px;
   width: 1rem;
   font-size: 1.6rem;
   color: #3a7;
@@ -1673,6 +1807,7 @@ form .loadfile .reset {
 .confirm .btn {
   margin-right: 1rem;
   height: 2rem;
+  padding: 0 1rem;
   line-height: 2rem;
   font-size: 1rem;
 }

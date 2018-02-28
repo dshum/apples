@@ -1,5 +1,5 @@
 $(function() {
-    var itemTotal = $('.main div[item]').length;
+    var itemTotal = 0;
     var itemCount = 0;
     var empty = true;
     var checked = {};
@@ -90,8 +90,10 @@ $(function() {
 
             itemCount++;
 
-            if (itemCount == itemTotal && empty) {
-                $('div.empty').show();
+            if (itemCount == itemTotal) {
+                if (empty) $('div.empty').show();
+            } else {
+                loadElements(items[itemCount].item, items[itemCount].classId);
             }
         }).fail(function() {
             $.alertDefaultError();
@@ -134,12 +136,20 @@ $(function() {
         });
     };
 
+    var items = [];
+
     $('.main div[item]').each(function () {
         var item = $(this).attr('item');
         var classId = $(this).attr('classId');
 
-        loadElements(item, classId);
+        items.push({item: item, classId: classId});
+
+        itemTotal++;
     });
+
+    if (itemTotal) {
+        loadElements(items[0].item, items[0].classId);
+    }
 
     $('body').on('click', '.main div[item] ul.header > li.h2', function() {
         var h2 = $(this);
@@ -966,6 +976,40 @@ $(function() {
         }
     });
 
+    $('body').on('contextmenu', '.sidebar .elements a', function(event) {
+        event.preventDefault();
+        event.stopPropagation();
+
+        var a = $(this);
+        var sidebar = $('.sidebar');
+        var menu = $('.sidebar .contextmenu');
+
+        var left = a.offset().left;
+        var top = a.offset().top - sidebar.offset().top + a.height() + 2;
+    
+        menu.find('li.title span').html(a.text());
+        menu.find('li.title small').html(a.attr('item'));
+        menu.find('li.edit a').attr('href', a.attr('href') + '/edit');
+        menu.find('li.browse a').attr('href', a.attr('href'));
+
+        if (top + menu.height() > $(window).height()) {
+            if (top - menu.height() - a.height() - 4 < 0) {
+                top = 0;
+            } else {
+                top = top - menu.height() - a.height() - 4;
+            }
+        }
+    
+        menu.css({
+            left: left + 'px',
+            top: top + 'px'
+        }).fadeIn(200);
+    });
+
+    $('body').on('click', '.sidebar .contextmenu', function(event) {
+        event.stopPropagation();
+    });
+
     $('body').on('click', '.sort-toggler', function() {
         var itemContainer = $(this).parents('div[item]');
         var th = itemContainer.find('th.browse');
@@ -980,5 +1024,55 @@ $(function() {
             itemContainer.find('td.browse a').hide();
             itemContainer.find('td.browse .drag').show();
         }
+    });
+
+    $('body').on('click', 'li.column-toggler', function() {
+        var li = $(this);
+        var dropdown = li.find('.dropdown');
+        var display = li.attr('display');
+
+        if (display == 'show') {
+            li.attr('display', 'hide');
+            dropdown.fadeOut(200);
+        } else {
+            li.attr('display', 'show');
+            dropdown.fadeIn(200);
+        }
+    });
+
+    $('body').on('click', 'li.column-toggler .dropdown', function(e) {
+        e.stopPropagation();
+    });
+
+    $('body').on('click', 'li.column-toggler .dropdown ul > li[show]', function(e) {
+        var li = $(this);
+        var name = li.attr('name');
+        var show = li.attr('show');
+        var itemContainer = li.parents('div[item]');
+        var item = itemContainer.attr('item');
+
+        show = show == 'true' ? 'false' : 'true';
+
+        li.attr('show', show);
+
+        $.post('/moonlight/column', {
+            item: item,
+            name: name,
+            show: show
+        });
+    });
+
+    $('body').on('click', 'li.column-toggler .dropdown .btn', function(e) {
+        var itemContainer = $(this).parents('div[item]');
+        var li = $(this).parents('li.column-toggler');
+        var dropdown = li.find('.dropdown');
+        var classId = itemContainer.attr('classId');
+        var item = itemContainer.attr('item');
+
+        li.attr('display', 'hide');
+        
+        dropdown.fadeOut(200, function() {
+            getElements(item, classId);
+        });
     });
 });
