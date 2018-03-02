@@ -13,6 +13,11 @@
 	<script>
 		$(function() {
 			var count = 2;
+			var img = new Image;
+
+			img.src = '/img/post1.jpg';
+			img.src = '/img/post2.jpg';
+			img.src = '/img/post3.jpg';
 
 			setInterval(function() {
 				$('.cover').css('background-image', 'url(/img/post' + count + '.jpg)');
