@@ -380,7 +380,7 @@ $site->
             setOpenItem(true)->
 			setRequired(true)
 		)->
-		addTimestamps()->
+		addTimestamps(false)->
 		addSoftDeletes()
 	)->
 
@@ -627,7 +627,7 @@ $site->
             setOpenItem(true)->
 			setRequired(true)
 		)->
-		addTimestamps()->
+		addTimestamps(false)->
 		addSoftDeletes()
 	)->
 
