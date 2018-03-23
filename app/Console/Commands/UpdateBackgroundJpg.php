@@ -42,7 +42,7 @@ class UpdateBackgroundJpg extends Command
 
         // $url = 'http://yandex.ru/images/today?size=1920x1080'; // doesn't work anymore
 
-        $url = 'https://source.unsplash.com/random/1920x1080';
+        $url = 'https://source.unsplash.com/1920x1080/?nature';
         $path = public_path().'/assets/background.jpg';
 
         $date = file_exists($path) ? date('Y-m-d', filemtime($path)) : null;
