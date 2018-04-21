@@ -63,12 +63,13 @@ class Handler extends ExceptionHandler
             }
     
             return response()->view('errors.404', [], 404);
-        } elseif (
-            $this->shouldReport($exception) 
-            && config('app.env') == 'production'
-        ) {
+        } elseif ($this->shouldReport($exception)) {
             if ($request->expectsJson()) {
                 return response()->json(['error' => $exception->getMessage()]);
+            }
+
+            if (config('app.debug')) {
+                return parent::render($request, $exception);
             }
 
             return response()->view('errors.500', ['exception' => $exception], 500);

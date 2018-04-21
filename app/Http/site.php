@@ -19,7 +19,6 @@ use Moonlight\Properties\PasswordProperty;
 use Moonlight\Properties\RichtextProperty;
 use Moonlight\Properties\TextareaProperty;
 use Moonlight\Properties\TextfieldProperty;
-use Moonlight\Properties\PluginProperty;
 use Moonlight\Properties\VirtualProperty;
 
 $site = \App::make('site');
